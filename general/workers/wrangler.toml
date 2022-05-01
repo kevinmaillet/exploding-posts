@@ -1,0 +1,12 @@
+name = "workers"
+type = "webpack"
+
+account_id = "MY_CLOUDFLARE_ACCOUNT_ID"
+workers_dev = true
+route = ""
+zone_id = ""
+compatibility_date = "2022-01-06"
+kv_namespaces = [ 
+	 { binding = "POSTS", preview_id = "269c8500cf554bf38ba8e88bff83d1d5", id = "6dd40dc8323a46a69113062f0da9e223" },
+	 { binding = "USERS", preview_id = "b84b7fb26f454201b1ae26fb0f1ce9cf", id = "f3e27c73fd48450085b08f429dca50e0" }
+]

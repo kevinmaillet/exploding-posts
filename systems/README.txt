@@ -1,0 +1,1 @@
+This is an auth app using Rust. :) -Kevin M
