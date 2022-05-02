@@ -14,7 +14,7 @@ async fn main() -> std::io::Result<()> {
             .route("/verify", web::get().to(handlers::verify))
             .route("/README.txt", web::get().to(handlers::read_me))
     })
-    .bind("127.0.0.1:8080")?
+    .bind("0.0.0.0:8080")?
     .run()
     .await
 }

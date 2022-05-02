@@ -1,3 +1,4 @@
 # This is a web application using React, TailwindCSS, Cloudflare Workers, and Rust with "exploding" posts or just posts that can only be made by a certain user within a 24 hour timeframe.
 
 A user can make posts on the React front-end under a certain username. Usernames expire after 24 hours. A cloudflare worker is used as the back-end for updating posts in a Cloudflare KV namespace and also hitting an authentication service which is run seperately as a Rust Rest app (what a mouthful) to verify is the 24 hour time limit has not been exceeded. The rust app takes advantage of asymmetric encryption by using the RS256 algorithm. One single private key is needed on the rust app and the public key is a text response on the /verify endpoint so other services within the application can verify the hashed token themselves.
+

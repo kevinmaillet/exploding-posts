@@ -30,7 +30,11 @@ pub async fn auth_user(user_id: web::Path<String>) -> Result<HttpResponse, Error
     )
     .unwrap();
 
-    let contents = fs::read_to_string("public.txt").expect("Something went wrong reading the file");
+    const PUBLIC_TEXT: &str = include_str!("./public.pem");
+
+    let contents = PUBLIC_TEXT;
+
+    // let contents = fs::read_to_string(PUBLIC_TEXT).expect("Something went wrong reading the file");
 
     let mut res = HttpResponse::Ok().content_type("text/plain").body(contents);
 
@@ -66,7 +70,11 @@ pub async fn verify(req: HttpRequest) -> Result<HttpResponse, Error> {
 
 //GET README.txt
 pub async fn read_me() -> Result<HttpResponse, Error> {
-    let contents = fs::read_to_string("README.txt").expect("Something went wrong reading the file");
+    const README: &str = include_str!("./README.txt");
+
+    let contents = README;
+
+    // let contents = fs::read_to_string(README).expect("Something went wrong reading the file");
 
     Ok(HttpResponse::Ok().body(contents))
 }
