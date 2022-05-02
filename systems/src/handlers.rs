@@ -3,7 +3,6 @@ use chrono::Utc;
 use cookie::{Cookie, SameSite};
 use jsonwebtoken::{decode, encode, Algorithm, DecodingKey, EncodingKey, Header, Validation};
 use serde::{Deserialize, Serialize};
-use std::fs;
 
 /// Our claims struct, it needs to derive `Serialize` and/or `Deserialize`
 #[derive(Debug, Serialize, Deserialize)]
@@ -32,11 +31,9 @@ pub async fn auth_user(user_id: web::Path<String>) -> Result<HttpResponse, Error
 
     const PUBLIC_TEXT: &str = include_str!("./public.pem");
 
-    let contents = PUBLIC_TEXT;
-
-    // let contents = fs::read_to_string(PUBLIC_TEXT).expect("Something went wrong reading the file");
-
-    let mut res = HttpResponse::Ok().content_type("text/plain").body(contents);
+    let mut res = HttpResponse::Ok()
+        .content_type("text/plain")
+        .body(PUBLIC_TEXT);
 
     res.add_cookie(
         &Cookie::build("token", token)
@@ -72,9 +69,5 @@ pub async fn verify(req: HttpRequest) -> Result<HttpResponse, Error> {
 pub async fn read_me() -> Result<HttpResponse, Error> {
     const README: &str = include_str!("./README.txt");
 
-    let contents = README;
-
-    // let contents = fs::read_to_string(README).expect("Something went wrong reading the file");
-
-    Ok(HttpResponse::Ok().body(contents))
+    Ok(HttpResponse::Ok().body(README))
 }
